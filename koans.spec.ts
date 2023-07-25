@@ -13,10 +13,14 @@ describe('TypeScript Koans - Test Suite 1', () => {
     expect(typeof count).toEqual('number');
 
     // Koan 3: TypeScript can infer multiple types for a union type
-    const numberOrString: number | string = Math.random() > 0.5 ? 42 : 'forty-two';
+    const randomNumber  = Math.random();
+    const numberOrString: number | string = randomNumber > 0.5 ? 42 : 'forty-two';
     
     // Failing Test 3: Uncomment the expect statement below and provide the expected type
-    expect(typeof numberOrString).toMatch(/string|number/);
+    // 👇 Solución cambiando de matcher
+    // expect(typeof numberOrString).toMatch(/string|number/);
+    expect(typeof numberOrString).toEqual(randomNumber > 0.5 ? 'number' : 'string');
+
 
     // Koan 4: TypeScript can infer the type from the result of an arithmetic operation
     const result = 5 / 'a';
